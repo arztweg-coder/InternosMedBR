@@ -5,7 +5,7 @@ import logoSrc from "@/assets/logo-internosmed.png";
 import {
   FlaskConical, Pill, ScrollText, FileText, ClipboardList, FilePlus2,
   HeartPulse, ChevronRight, Send, CalendarClock, Calculator, Clock,
-  User, Crown, Star,
+  User, Crown, Star, Lock,
 } from "lucide-react";
 
 const tools = [
