@@ -6,7 +6,7 @@
 
 import { useState, useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { LogIn, Mail, Lock, AlertCircle, CheckCircle2, Info } from "lucide-react";
+import { LogIn, Mail, Lock, AlertCircle, CheckCircle2, Info, ExternalLink } from "lucide-react";
 import { toast } from "sonner";
 import {
   validateEmailDomain,
@@ -209,6 +209,45 @@ export default function LoginV2() {
           <br />
           Desenvolvido em conformidade com LGPD
         </p>
+      </div>
+
+      {/* Rodapé hospitais */}
+      <div className="max-w-md mx-auto px-4 pb-10 mt-6">
+        <div className="bg-white rounded-xl shadow-sm border-2 border-teal-100 p-6">
+          <div className="text-center">
+            <h3 className="text-base font-bold text-gray-900 mb-2">
+              🏥 Seu Hospital Quer Usar o InternosMed?
+            </h3>
+            <p className="text-sm text-gray-600 mb-4">
+              Oferecemos implementação personalizada para hospitais universitários
+              e serviços de residência médica em todo o Brasil.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <a
+                href="mailto:contato@arztweg.com?subject=InternosMed - Solicitação de Serviços para Hospital"
+                className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors text-sm font-medium"
+              >
+                <Mail className="w-4 h-4" />
+                Solicitar Implementação
+              </a>
+
+              <a
+                href="https://www.arztweg.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-white text-teal-600 border-2 border-teal-600 rounded-lg hover:bg-teal-50 transition-colors text-sm font-medium"
+              >
+                <ExternalLink className="w-4 h-4" />
+                Conhecer ArztWEG
+              </a>
+            </div>
+
+            <p className="text-xs text-gray-400 mt-4">
+              Sistema desenvolvido por Dr. Frank Walczak · Projeto ArztWEG
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );
