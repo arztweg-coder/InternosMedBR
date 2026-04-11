@@ -598,7 +598,7 @@ function AdminPanel() {
           <div className="flex-1 bg-white/30" />
         </div>
         <div className="flex items-center gap-3 py-4 flex-1">
-          <img src="/favicon-512.png" alt="InternosMed" className="w-8 h-8 object-contain" />
+          <img src="./favicon-512.png" alt="InternosMed" className="w-8 h-8 object-contain" />
           <div>
             <h1 className="font-bold text-sm">Painel Administrativo · Inter<span className="text-brasil-yellow">NACIONAL</span></h1>
             <p className="text-xs text-blue-200">Logado como: {ADMIN_EMAIL}</p>

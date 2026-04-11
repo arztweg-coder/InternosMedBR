@@ -1,16 +1,18 @@
 import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react-swc'
-import { resolve } from 'path'
+import react from '@vitejs/plugin-react'
+import path from 'path'
 
 export default defineConfig({
   plugins: [react()],
+  base: './',
   resolve: {
     alias: {
-      '@': resolve(__dirname, './src'),
+      '@': path.resolve(process.cwd(), './src'),
     },
   },
   build: {
     target: 'es2015',
+    minify: 'terser',
     sourcemap: false,
     rollupOptions: {
       output: {

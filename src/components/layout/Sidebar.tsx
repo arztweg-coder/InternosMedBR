@@ -115,7 +115,7 @@ export default function Sidebar({ collapsed }: SidebarProps) {
 
       {/* Logo */}
       <div className={cn("flex items-center gap-3 px-3 py-3 border-b border-white/10", effectiveCollapsed && "justify-center")}>
-        <img src="/favicon-512.png" alt="InternosMed" className="w-9 h-9 object-contain flex-shrink-0 rounded-md" />
+        <img src="./favicon-512.png" alt="InternosMed" className="w-9 h-9 object-contain flex-shrink-0 rounded-md" />
         {!effectiveCollapsed && (
           <div className="overflow-hidden">
             <p className="text-white font-bold text-sm leading-tight tracking-wide">

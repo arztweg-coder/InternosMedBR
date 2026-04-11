@@ -64,7 +64,7 @@ export default function Login() {
         <div className="absolute top-10 right-10 w-24 h-24 rounded-full bg-brasil-yellow/10 blur-2xl" />
 
         <div className="relative z-10 text-center px-8">
-          <img src="/favicon-512.png" alt="InternosMed" className="w-28 h-28 object-contain mx-auto mb-6 drop-shadow-2xl" />
+          <img src="./favicon-512.png" alt="InternosMed" className="w-28 h-28 object-contain mx-auto mb-6 drop-shadow-2xl" />
           <h1 className="text-3xl font-bold text-white mb-2">
             Inter<span className="text-brasil-yellow">NACIONAL</span>
           </h1>
@@ -94,7 +94,7 @@ export default function Login() {
       <div className="flex-1 flex flex-col items-center justify-center bg-gray-50 p-6">
         {/* Mobile logo */}
         <div className="lg:hidden text-center mb-8">
-          <img src="/favicon-512.png" alt="InternosMed" className="w-20 h-20 object-contain mx-auto mb-2" />
+          <img src="./favicon-512.png" alt="InternosMed" className="w-20 h-20 object-contain mx-auto mb-2" />
           <h1 className="text-xl font-bold text-brasil-blue">Inter<span className="text-brasil-yellow-dark">NACIONAL</span></h1>
           <p className="text-sm text-gray-500">Portal do Interno · HC-UFG</p>
         </div>

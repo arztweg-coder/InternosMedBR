@@ -39,7 +39,7 @@ export default function Perfil() {
             <p className="text-sm text-gray-500">{user?.email}</p>
             {crm && <p className="text-xs text-brand-blue-600 font-medium mt-0.5">CRM/GO: {crm}</p>}
           </div>
-          <img src="/favicon-512.png" alt="InternosMed" className="w-14 h-14 object-contain hidden sm:block" />
+          <img src="./favicon-512.png" alt="InternosMed" className="w-14 h-14 object-contain hidden sm:block" />
         </div>
 
         <form onSubmit={handleSave} className="space-y-5">

@@ -115,7 +115,7 @@ export default function LoginV2() {
         <div className="text-center mb-8">
           <div className="inline-block mb-4">
             <img
-              src="/favicon-512.png"
+              src="./favicon-512.png"
               alt="InternosMed"
               className="h-24 w-24 object-contain mx-auto"
             />
