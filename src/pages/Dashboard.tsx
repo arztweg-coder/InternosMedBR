@@ -70,7 +70,7 @@ export default function Dashboard() {
             {user?.crm && (
               <p className="text-xs text-gray-400 hidden sm:block">CRM: <span className="font-medium text-gray-600">{user.crm}</span></p>
             )}
-            <img src={logoSrc} alt="InternosMed" className="w-10 h-10 object-contain hidden sm:block" />
+            <img src="/favicon-512.png" alt="InternosMed" className="h-16 w-16 object-contain hidden sm:block" />
           </div>
         </div>
       </div>
