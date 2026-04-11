@@ -60,6 +60,18 @@ export default function Dashboard() {
             <p className="text-sm text-gray-500">
               {todayBR()} · {user?.specialty || "Interno de Medicina"} · HC-UFG
             </p>
+            <p className="text-xs text-gray-400 mt-1.5">
+              Conheça o projeto{' '}
+              <a
+                href="https://www.arztweg.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-teal-600 hover:text-teal-700 font-semibold underline"
+              >
+                ArztWEG
+              </a>
+              {' '}do autor, e prepare-se para fazer residência médica na Europa.
+            </p>
           </div>
           <div className="ml-auto flex flex-col items-end gap-2">
             <div className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold ${rd.bg} ${rd.color}`}>
