@@ -2,7 +2,6 @@ import { Outlet } from "react-router-dom";
 import { useState } from "react";
 import Sidebar from "./Sidebar";
 import { Menu } from "lucide-react";
-import logoSrc from "@/assets/logo-internosmed.png";
 
 export default function AppLayout() {
   const [collapsed, setCollapsed] = useState(true);
@@ -24,7 +23,7 @@ export default function AppLayout() {
             <span className="text-xs text-gray-500 hidden sm:block">Hospital das Clínicas – UFG</span>
           </div>
           <div className="ml-auto flex items-center gap-2">
-            <img src={logoSrc} alt="InternosMed" className="w-7 h-7 object-contain" />
+            <img src="/favicon-512.png" alt="InternosMed" className="w-7 h-7 object-contain" />
             <span className="text-xs font-semibold text-brand-blue-600 hidden sm:inline">
               Internos<span className="text-teal-500">Med</span>
             </span>
