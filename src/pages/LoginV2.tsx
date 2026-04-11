@@ -77,7 +77,7 @@ export default function LoginV2() {
 
       {/* Box hospitais — canto superior direito */}
       <div className="absolute top-1/2 -translate-y-1/2 right-6 w-72 hidden lg:block z-10">
-        <div className="bg-white rounded-xl shadow-md border-2 border-teal-100 p-4">
+        <div className="bg-white rounded-xl shadow-md border-2 border-teal-100 p-4 text-center">
           <h3 className="text-sm font-bold text-gray-900 mb-1">
             🏥 Quer usar o InternosMed em seu Hospital?
           </h3>
