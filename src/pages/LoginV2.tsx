@@ -17,7 +17,6 @@ import {
   AUTHORIZED_DOMAINS,
   type UserProfile,
 } from "@/lib/auth-v2";
-import logoImg from "@/assets/logo-internosmed.png";
 
 export default function LoginV2() {
   const [email, setEmail] = useState("");
