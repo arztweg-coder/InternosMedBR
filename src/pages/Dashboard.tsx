@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { getStoredUser, getInitials } from "@/lib/auth";
 import { todayBR } from "@/lib/utils";
-import logoSrc from "@/assets/logo-internosmed.png";
 import {
   FlaskConical, Pill, ScrollText, FileText, ClipboardList, FilePlus2,
   HeartPulse, ChevronRight, Send, CalendarClock, Calculator, Clock,
@@ -76,9 +75,29 @@ export default function Dashboard() {
       </div>
 
 
+      {/* Ferramentas */}
+      <h2 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3">Ferramentas</h2>
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 mb-6">
+        {utilities.map(({ path, icon: Icon, label, desc, color }) => (
+          <button
+            key={path}
+            onClick={() => navigate(path)}
+            className="flex items-center gap-3 bg-white border border-gray-200 rounded-xl p-3.5 text-left transition-all group shadow-sm hover:bg-gray-50 hover:border-gray-300 cursor-pointer"
+          >
+            <div className={`w-9 h-9 rounded-lg border flex items-center justify-center flex-shrink-0 ${color}`}>
+              <Icon className="w-4 h-4" />
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="font-semibold text-gray-700 text-sm">{label}</p>
+              <p className="text-xs text-gray-400 truncate">{desc}</p>
+            </div>
+          </button>
+        ))}
+      </div>
+
       {/* Documentos Clínicos */}
       <h2 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3">Documentos Clínicos</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mb-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
         {tools.map(({ path, icon: Icon, label, desc, color }) => (
           <button
             key={path}
@@ -93,26 +112,6 @@ export default function Dashboard() {
               <p className="text-xs text-gray-500 truncate">{desc}</p>
             </div>
             <ChevronRight className="w-4 h-4 text-gray-300 group-hover:text-brasil-blue transition-colors flex-shrink-0" />
-          </button>
-        ))}
-      </div>
-
-      {/* Ferramentas */}
-      <h2 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3">Ferramentas</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
-        {utilities.map(({ path, icon: Icon, label, desc, color }) => (
-          <button
-            key={path}
-            onClick={() => navigate(path)}
-            className="flex items-center gap-3 bg-white border border-gray-200 rounded-xl p-3.5 text-left transition-all group shadow-sm hover:bg-gray-50 hover:border-gray-300 cursor-pointer"
-          >
-            <div className={`w-9 h-9 rounded-lg border flex items-center justify-center flex-shrink-0 ${color}`}>
-              <Icon className="w-4 h-4" />
-            </div>
-            <div className="flex-1 min-w-0">
-              <p className="font-semibold text-gray-700 text-sm">{label}</p>
-              <p className="text-xs text-gray-400 truncate">{desc}</p>
-            </div>
           </button>
         ))}
       </div>
