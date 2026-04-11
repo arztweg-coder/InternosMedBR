@@ -78,11 +78,11 @@ export default function LoginV2() {
       <div className="w-full max-w-md">
         {/* Logo e Título */}
         <div className="text-center mb-8">
-          <div className="inline-block bg-white rounded-2xl shadow-lg p-4 mb-4">
+          <div className="inline-block mb-4">
             <img
-              src={logoImg}
+              src="/favicon-512.png"
               alt="InternosMed"
-              className="h-16 w-auto mx-auto"
+              className="h-24 w-24 object-contain mx-auto"
             />
           </div>
           <h1 className="text-3xl font-bold text-gray-800 mb-2">
