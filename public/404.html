@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>InternosMed</title>
+    <script>
+      // GitHub Pages SPA redirect hack
+      // Converte /path/to/page → /?/path/to/page para que index.html capture a rota
+      var seg = 1;
+      var l = window.location;
+      l.replace(
+        l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+        l.pathname.split('/').slice(0, 1 + seg).join('/') + '/?/' +
+        l.pathname.slice(1).split('/').slice(seg).join('/').replace(/&/g, '~and~') +
+        (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
+        l.hash
+      );
+    </script>
+  </head>
+  <body></body>
+</html>
