@@ -139,7 +139,7 @@ export default function Dashboard() {
           <span className="font-bold text-brasil-blue">Internos</span><span className="font-bold text-brasil-green">Med</span><span className="font-bold text-brasil-yellow-dark">BR</span>
           {" "}· HC-UFG · Documentos gerados localmente
         </p>
-        <p className="text-center text-xs text-gray-300">Criado e Administrado por @Frank.RC.Walczak</p>
+        <p className="text-center text-xs text-gray-300">Administrado por ArztWEG - O Caminho Médico</p>
       </div>
     </div>
   );

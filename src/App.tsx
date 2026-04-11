@@ -32,6 +32,14 @@ import Perfil from "@/pages/Perfil";
 import Admin from "@/pages/Admin";
 import AppLayout from "@/components/layout/AppLayout";
 
+// Novas especialidades de calculadoras
+import NeurocirurgiaCalculators from "@/pages/calculators/NeurocirurgiaCalculators";
+import ReumatologiaCalculators from "@/pages/calculators/ReumatologiaCalculators";
+import ExameFisicoCalculators from "@/pages/calculators/ExameFisicoCalculators";
+
+// Termos de Uso
+import TermsOfService from "@/pages/TermsOfService";
+
 function RequireAuth({ children }: { children: React.ReactNode }) {
   const user = getStoredUser();
   if (!user) return <Navigate to="/login" replace />;
@@ -58,9 +66,36 @@ export default function App() {
       <Toaster richColors position="top-right" />
 
       <Routes>
-        {/* Rota pública */}
+        {/* Rotas públicas */}
         <Route path="/login" element={<LoginV2 />} />
         <Route path="/admin" element={<Admin />} />
+        <Route path="/termos" element={<TermsOfService />} />
+
+        {/* Rotas de especialidades (full-page, fora do AppLayout) */}
+        <Route
+          path="/calculadoras/neurocirurgia"
+          element={
+            <RequireAuth>
+              <NeurocirurgiaCalculators />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/calculadoras/reumatologia"
+          element={
+            <RequireAuth>
+              <ReumatologiaCalculators />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/calculadoras/exame-fisico"
+          element={
+            <RequireAuth>
+              <ExameFisicoCalculators />
+            </RequireAuth>
+          }
+        />
 
         {/* Rotas protegidas com layout */}
         <Route

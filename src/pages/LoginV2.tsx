@@ -2,6 +2,7 @@
  * LoginV2.tsx
  * Página de Login com Validação Multi-Domínio
  * Domínios autorizados: @ufg.br | @discente.ufg.br | @ebserh.gov.br
+ * + Modal de Termos de Uso (aceite obrigatório no primeiro acesso)
  */
 
 import { useState, useEffect } from "react";
@@ -17,6 +18,7 @@ import {
   AUTHORIZED_DOMAINS,
   type UserProfile,
 } from "@/lib/auth-v2";
+import TermsModal from "@/components/TermsModal";
 
 export default function LoginV2() {
   const [email, setEmail] = useState("");
@@ -24,6 +26,10 @@ export default function LoginV2() {
   const [loading, setLoading] = useState(false);
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
+
+  // Estado do modal de termos
+  const [showTermsModal, setShowTermsModal] = useState(false);
+  const [pendingUser, setPendingUser] = useState<UserProfile | null>(null);
 
   useEffect(() => {
     // Mostrar mensagem se sessão expirou
@@ -65,12 +71,45 @@ export default function LoginV2() {
         mfaEnabled: false,
       };
 
-      setCurrentUser(user);
-      toast.success(`Bem-vindo(a), ${user.name}!`);
-      navigate("/");
-      setLoading(false);
+      // Verificar se já aceitou os termos (localStorage como fallback até Firebase)
+      const termsKey = `terms_accepted_${user.email}`;
+      const termsAccepted = localStorage.getItem(termsKey);
+
+      if (!termsAccepted) {
+        // Primeiro acesso — mostrar modal de termos
+        setPendingUser(user);
+        setShowTermsModal(true);
+        setLoading(false);
+      } else {
+        // Já aceitou os termos — pode logar
+        setCurrentUser(user);
+        toast.success(`Bem-vindo(a), ${user.name}!`);
+        navigate("/");
+        setLoading(false);
+      }
     }, 1200);
   }
+
+  // Função para aceitar os termos
+  const handleAcceptTerms = () => {
+    if (!pendingUser) return;
+
+    // Salvar aceite dos termos
+    const termsKey = `terms_accepted_${pendingUser.email}`;
+    const termsData = {
+      acceptedAt: new Date().toISOString(),
+      version: "1.0-2026-03",
+      email: pendingUser.email,
+    };
+    localStorage.setItem(termsKey, JSON.stringify(termsData));
+
+    // Completar login
+    setCurrentUser(pendingUser);
+    setShowTermsModal(false);
+    setPendingUser(null);
+    toast.success(`Bem-vindo(a), ${pendingUser.name}! Termos aceitos com sucesso.`);
+    navigate("/");
+  };
 
   return (
     <div className="relative min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-50">
@@ -195,6 +234,18 @@ export default function LoginV2() {
               Esqueci minha senha
             </a>
           </div>
+
+          {/* Link para Termos de Uso */}
+          <div className="text-center mt-3">
+            <a
+              href="/termos"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs text-gray-500 hover:text-teal-600 transition-colors"
+            >
+              Termos de Uso e Política de Privacidade
+            </a>
+          </div>
         </div>
 
         {/* Avisos de Domínio Autorizado */}
@@ -247,6 +298,16 @@ export default function LoginV2() {
         </p>
       </div>
       </div>{/* fim flex centralizado */}
+
+      {/* Modal de Termos de Uso */}
+      <TermsModal
+        isOpen={showTermsModal}
+        onClose={() => {
+          setShowTermsModal(false);
+          setPendingUser(null);
+        }}
+        onAccept={handleAcceptTerms}
+      />
     </div>
   );
 }
