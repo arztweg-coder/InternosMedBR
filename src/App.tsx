@@ -3,7 +3,6 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Toaster } from "sonner";
 
 // Autenticação e privacidade LGPD
-import { initActivityListener } from "@/lib/auth-v2";
 import { setupPrivacyProtection } from "@/lib/privacy";
 import { getStoredUser } from "@/lib/auth";
 
@@ -40,6 +39,10 @@ import ExameFisicoCalculators from "@/pages/calculators/ExameFisicoCalculators";
 // Termos de Uso
 import TermsOfService from "@/pages/TermsOfService";
 
+// Novos módulos
+import LinksUteis from "@/pages/LinksUteis";
+import BlocoNotas from "@/pages/BlocoNotas";
+
 function RequireAuth({ children }: { children: React.ReactNode }) {
   const user = getStoredUser();
   if (!user) return <Navigate to="/login" replace />;
@@ -50,12 +53,10 @@ export default function App() {
   useEffect(() => {
     // Proteção de privacidade LGPD — limpa dados ao sair/fechar
     setupPrivacyProtection();
-    // Timeout de sessão — 15 minutos de inatividade
-    initActivityListener();
 
-    console.log("✓ InternosMed v2.0 iniciado");
+    console.log("✓ InternosMed v2.1 iniciado");
     console.log("✓ Proteção LGPD ativa (dados não persistidos)");
-    console.log("✓ Timeout de sessão: 15 minutos");
+    console.log("✓ Timer de sessão controlado pelo AppLayout");
   }, []);
 
   return (
@@ -74,37 +75,21 @@ export default function App() {
         {/* Rotas de especialidades (full-page, fora do AppLayout) */}
         <Route
           path="/calculadoras/neurocirurgia"
-          element={
-            <RequireAuth>
-              <NeurocirurgiaCalculators />
-            </RequireAuth>
-          }
+          element={<RequireAuth><NeurocirurgiaCalculators /></RequireAuth>}
         />
         <Route
           path="/calculadoras/reumatologia"
-          element={
-            <RequireAuth>
-              <ReumatologiaCalculators />
-            </RequireAuth>
-          }
+          element={<RequireAuth><ReumatologiaCalculators /></RequireAuth>}
         />
         <Route
           path="/calculadoras/exame-fisico"
-          element={
-            <RequireAuth>
-              <ExameFisicoCalculators />
-            </RequireAuth>
-          }
+          element={<RequireAuth><ExameFisicoCalculators /></RequireAuth>}
         />
 
         {/* Rotas protegidas com layout */}
         <Route
           path="/"
-          element={
-            <RequireAuth>
-              <AppLayout />
-            </RequireAuth>
-          }
+          element={<RequireAuth><AppLayout /></RequireAuth>}
         >
           <Route index element={<Dashboard />} />
 
@@ -117,7 +102,7 @@ export default function App() {
           <Route path="atestado" element={<AtestadoV2 />} />
           <Route path="alta" element={<AltaHospitalarV2 />} />
 
-          {/* Outros documentos (mantidos) */}
+          {/* Outros documentos */}
           <Route path="encaminhamento" element={<Encaminhamento />} />
           <Route path="receita-simples" element={<ReceitaSimples />} />
           <Route path="receita-controlada" element={<ReceitaControlada />} />
@@ -129,6 +114,10 @@ export default function App() {
           <Route path="calculadoras" element={<CalculadorasV2 />} />
           <Route path="historico" element={<Historico />} />
           <Route path="perfil" element={<Perfil />} />
+
+          {/* Novos módulos */}
+          <Route path="links" element={<LinksUteis />} />
+          <Route path="notas" element={<BlocoNotas />} />
         </Route>
 
         <Route path="*" element={<Navigate to="/" replace />} />

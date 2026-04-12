@@ -19,7 +19,6 @@ interface NavItemDef {
 }
 
 const navItems: NavItemDef[] = [
-  { path: "/", label: "Dashboard", icon: LayoutDashboard, exact: true },
   { path: "/aih", label: "AIH", icon: Hospital, featureId: "aih" },
   { path: "/alta", label: "Alta Hospitalar", icon: ClipboardList, featureId: "alta" },
   { path: "/anamnese", label: "Anamnese 📋", icon: ClipboardList, featureId: "anamnese" },
@@ -146,6 +145,22 @@ export default function Sidebar({ collapsed }: SidebarProps) {
             {badge.label}
           </span>
         )}
+      </div>
+
+      {/* Botão Dashboard destacado */}
+      <div className="px-2 py-2 border-b border-white/10">
+        <button
+          onClick={() => navigate("/")}
+          title={effectiveCollapsed ? "Dashboard" : undefined}
+          className={cn(
+            "flex items-center gap-3 w-full px-3 py-2 rounded-lg text-sm font-medium transition-all",
+            "bg-brasil-yellow/20 text-brasil-yellow hover:bg-brasil-yellow/30",
+            effectiveCollapsed ? "justify-center" : ""
+          )}
+        >
+          <LayoutDashboard className="w-4 h-4 flex-shrink-0" />
+          {!effectiveCollapsed && <span>Dashboard</span>}
+        </button>
       </div>
 
       {/* Nav principal */}

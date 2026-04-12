@@ -2,25 +2,43 @@
  * PrintHeader – Cabeçalho padronizado para todos os documentos impressos.
  * Exibe o logotipo UFG/HC/EBSERH e abaixo o nome do tipo de documento.
  * Visível apenas na impressão (use dentro de divs com classe print-only).
+ * 
+ * NOTA: O cabeçalho deve ser o PRIMEIRO elemento dentro do bloco de impressão.
+ * Use page-break-before: always no container para garantir posicionamento.
  */
 import headerImg from "@/assets/header-hcufg.jpg";
 
 interface PrintHeaderProps {
-  title: string; // Ex: "Pedido de Exames", "Prescrição Médica", "APAC"
+  title: string;
 }
 
 export default function PrintHeader({ title }: PrintHeaderProps) {
   return (
-    <div className="text-center mb-4 border-b-2 border-gray-700 pb-3">
+    <div
+      style={{
+        textAlign: "center",
+        marginBottom: "12px",
+        borderBottom: "2px solid #333",
+        paddingBottom: "8px",
+        pageBreakInside: "avoid",
+        breakInside: "avoid",
+      }}
+    >
       <img
         src={headerImg}
         alt="UFG – Hospital das Clínicas – EBSERH"
-        style={{ maxWidth: "100%", height: "auto", maxHeight: "64px", display: "block", margin: "0 auto 8px auto" }}
+        style={{
+          maxWidth: "100%",
+          height: "auto",
+          maxHeight: "64px",
+          display: "block",
+          margin: "0 auto 8px auto",
+        }}
       />
       <h2
         style={{
           fontSize: "13pt",
-          fontWeight: "700",
+          fontWeight: 700,
           textTransform: "uppercase",
           letterSpacing: "0.05em",
           color: "#111",

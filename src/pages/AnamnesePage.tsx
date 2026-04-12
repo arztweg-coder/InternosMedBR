@@ -137,6 +137,19 @@ export default function AnamnesePage() {
 
   const selected = especialidades.find(e => e.id === expandedId) ?? null;
 
+  function handleSpecialtySelect(id: string) {
+    setExpandedId(expandedId === id ? null : id);
+    // Scroll automático no mobile (mesma lógica das calculadoras)
+    if (expandedId !== id) {
+      setTimeout(() => {
+        const panel = document.getElementById('anamnese-panel');
+        if (panel && window.innerWidth < 1024) {
+          panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 50);
+    }
+  }
+
   return (
     <div className="animate-fade-in">
       {/* Título */}
@@ -156,7 +169,7 @@ export default function AnamnesePage() {
             {especialidades.map(esp => (
               <div key={esp.id} className="border-b border-gray-100 last:border-0">
                 <button
-                  onClick={() => setExpandedId(expandedId === esp.id ? null : esp.id)}
+                  onClick={() => handleSpecialtySelect(esp.id)}
                   className={`w-full flex items-center justify-between px-4 py-2.5 text-sm font-medium transition-colors ${
                     expandedId === esp.id
                       ? 'bg-teal-600 text-white'
@@ -175,7 +188,7 @@ export default function AnamnesePage() {
         </nav>
 
         {/* Área de conteúdo */}
-        <div className="flex-1 min-w-0">
+        <div id="anamnese-panel" className="flex-1 min-w-0">
           {selected ? (
             <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6">
               <div className="flex items-center gap-3 mb-5 pb-4 border-b border-gray-100">

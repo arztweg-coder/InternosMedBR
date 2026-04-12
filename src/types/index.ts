@@ -2,17 +2,29 @@ import type { UserRole } from "@/lib/access";
 
 export type { UserRole };
 
+/** Cargo/função do usuário no HC-UFG */
+export type UserCargo = "interno" | "residente" | "preceptor" | "enfermagem" | "colaborador";
+
 export interface User {
   id: string;
   name: string;
   email: string;
   crm?: string;
+  rqe?: string;
   specialty?: string;
   turma?: string;
   institution?: string;
   phone?: string;
   address?: string;
   role?: UserRole;
+  /** Cargo selecionado no cadastro */
+  cargo?: UserCargo;
+  /** Matrícula institucional */
+  matricula?: string;
+  /** Data de nascimento (ISO string) */
+  dataNascimento?: string;
+  /** Se true, o perfil inicial já foi preenchido */
+  profileComplete?: boolean;
 }
 
 export interface MedicationItem {

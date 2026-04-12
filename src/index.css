@@ -51,6 +51,14 @@
   .no-print { display: none !important; }
   .print-only { display: block !important; }
 
+  /* ── FORÇAR OCULTAMENTO de TODOS os elementos fixos/flutuantes na impressão ── */
+  /* Isso garante que banners LGPD, tooltips e overlays nunca apareçam no PDF */
+  [class*="fixed"] { display: none !important; }
+  [class*="sticky"] { position: static !important; }
+  
+  /* Fallback: ocultar especificamente o badge de privacidade pelo posicionamento */
+  .fixed { display: none !important; }
+
   body {
     background: white !important;
     font-family: "Times New Roman", Times, serif;

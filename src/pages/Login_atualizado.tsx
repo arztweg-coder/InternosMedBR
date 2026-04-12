@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
-import { Eye, EyeOff, AlertCircle } from "lucide-react";
+import { Eye, EyeOff, AlertCircle, Info, CheckCircle } from "lucide-react";
 import { validateUFGEmail, mockRegister, mockLogin } from "@/lib/auth";
 
 export default function Login() {
@@ -90,12 +90,43 @@ export default function Login() {
         <p className="absolute bottom-5 text-blue-300/40 text-xs">Hospital das Clínicas – UFG · Goiânia</p>
       </div>
 
-      {/* Right panel: form + ArztWEG banner */}
-      <div className="flex-1 flex items-center justify-center bg-gray-50 p-6">
-        <div className="flex items-start gap-6 animate-fade-in">
-          {/* Left space — reserved for future use */}
-          <div className="hidden xl:block w-64" />
+      {/* Right panel: form + banners laterais */}
+      <div className="flex-1 flex items-center justify-center bg-gray-50 p-6 relative">
+        {/* Banner de domínios autorizados - TOPO DIREITO */}
+        <div className="hidden lg:block absolute top-6 right-6 z-10">
+          <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 shadow-md max-w-xs">
+            <div className="flex items-center gap-2 mb-3">
+              <Info className="w-5 h-5 text-blue-600 flex-shrink-0" />
+              <p className="text-sm font-bold text-blue-900">Domínios autorizados:</p>
+            </div>
+            <div className="space-y-2">
+              <div className="flex items-center gap-2">
+                <CheckCircle className="w-4 h-4 text-blue-600 flex-shrink-0" />
+                <div>
+                  <p className="text-sm font-mono text-blue-800">@ufg.br</p>
+                  <p className="text-xs text-blue-600">(Docentes/Preceptores)</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle className="w-4 h-4 text-blue-600 flex-shrink-0" />
+                <div>
+                  <p className="text-sm font-mono text-blue-800">@discente.ufg.br</p>
+                  <p className="text-xs text-blue-600">(Internos)</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle className="w-4 h-4 text-blue-600 flex-shrink-0" />
+                <div>
+                  <p className="text-sm font-mono text-blue-800">@ebserh.gov.br</p>
+                  <p className="text-xs text-blue-600">(Médicos EBSERH)</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
+        {/* Container central com login card e banner ArztWEG alinhados */}
+        <div className="flex items-start gap-6 animate-fade-in">
           {/* Center: Login card */}
           <div className="w-full max-w-sm">
             {/* Mobile logo */}
@@ -212,7 +243,7 @@ export default function Login() {
             </p>
           </div>
 
-          {/* Right: ArztWEG banner — aligned vertically with login card */}
+          {/* Right: ArztWEG banner — ALINHADO NA MESMA ALTURA DO LOGIN CARD */}
           <div className="hidden md:flex flex-col items-center w-64 flex-shrink-0">
             <div className="bg-white rounded-2xl shadow-lg border border-teal-100 p-6 text-center w-full">
               <p className="text-lg font-bold text-gray-800 mb-1">
@@ -239,8 +270,32 @@ export default function Login() {
               </a>
               <div className="mt-4 pt-3 border-t border-gray-100">
                 <img src="./logo-arztweg.png" alt="ArztWEG" className="w-10 h-10 object-contain mx-auto mb-2 rounded" />
-                <p className="text-xs text-gray-500 font-medium">Projeto ArztWEG - O Caminho Médico</p>
+                <p className="text-xs text-gray-500 font-medium">Projeto ArztWEG - O Caminho Médico!</p>
                 <p className="text-xs text-teal-600">contato@arztweg.com</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Banner domínios mobile - abaixo do card de login */}
+        <div className="lg:hidden absolute bottom-6 left-6 right-6">
+          <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 shadow-md">
+            <div className="flex items-center gap-2 mb-2">
+              <Info className="w-4 h-4 text-blue-600 flex-shrink-0" />
+              <p className="text-xs font-bold text-blue-900">Domínios autorizados:</p>
+            </div>
+            <div className="grid grid-cols-3 gap-2">
+              <div className="text-center">
+                <p className="text-xs font-mono text-blue-800">@ufg.br</p>
+                <p className="text-[10px] text-blue-600">Docentes</p>
+              </div>
+              <div className="text-center">
+                <p className="text-xs font-mono text-blue-800">@discente.ufg.br</p>
+                <p className="text-[10px] text-blue-600">Internos</p>
+              </div>
+              <div className="text-center">
+                <p className="text-xs font-mono text-blue-800">@ebserh.gov.br</p>
+                <p className="text-[10px] text-blue-600">EBSERH</p>
               </div>
             </div>
           </div>

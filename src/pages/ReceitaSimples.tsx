@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { Plus, Printer, RotateCcw, X, UserCheck } from "lucide-react";
+import { Plus, Printer, RotateCcw, X } from "lucide-react";
 import { toast } from "sonner";
 import { VIA_OPTIONS } from "@/constants/examPresets";
 import { todayISO, isoToBR, generateId } from "@/lib/utils";
 import { addHistoryEntry } from "@/lib/history";
 import PrintHeader from "@/components/print/PrintHeader";
-import PrintSignatureBlock, { type SignerRole } from "@/components/print/PrintSignatureBlock";
+import PrintSignatureBlock from "@/components/print/PrintSignatureBlock";
 import type { MedicationItem } from "@/types";
 import MedAutocomplete from "@/components/ui/MedAutocomplete";
 import CIDSearch from "@/components/ui/CIDSearch";
@@ -15,13 +15,6 @@ function emptyMed(): MedicationItem {
   return { id: generateId(), via: "Oral", item: "", apresentacao: "", quantidade: "", posologia: "" };
 }
 
-const ROLE_OPTIONS: { value: SignerRole; label: string }[] = [
-  { value: "interno", label: "Interno" },
-  { value: "medico", label: "Médico" },
-  { value: "ambos", label: "Ambos" },
-  { value: "nenhum", label: "Nenhum" },
-];
-
 export default function ReceitaSimples() {
   const [patientName, setPatientName] = useState("");
   const [date, setDate] = useState(todayISO());
@@ -29,7 +22,6 @@ export default function ReceitaSimples() {
   const [meds, setMeds] = useState<MedicationItem[]>([emptyMed()]);
   const [cid, setCid] = useState("");
   const [cidName, setCidName] = useState("");
-  const [signerRole, setSignerRole] = useState<SignerRole>("medico");
 
   function updateMed(id: string, field: keyof MedicationItem, value: string) {
     setMeds((prev) => prev.map((m) => (m.id === id ? { ...m, [field]: value } : m)));
@@ -47,17 +39,19 @@ export default function ReceitaSimples() {
   }
 
   function handlePrint() {
-    if (!patientName.trim()) { toast.error("Informe o nome do paciente."); return; }
-    if (meds.every((m) => !m.item.trim())) { toast.error("Adicione ao menos um medicamento."); return; }
-    addHistoryEntry({ type: "receita_simples", label: "Receita Simples", patientName, date });
+    if (patientName.trim()) {
+      addHistoryEntry({ type: "receita_simples", label: "Receita Simples", patientName, date });
+    }
     window.print();
   }
+
+  const filledMeds = meds.filter((m) => m.item);
 
   return (
     <div className="animate-fade-in">
       <div className="no-print">
         <h1 className="text-2xl font-bold text-gray-800 mb-1">Receituário Simples</h1>
-        <p className="text-sm text-gray-500 mb-6">Para medicamentos de uso comum sem controle especial.</p>
+        <p className="text-sm text-gray-500 mb-6">Para medicamentos de uso comum sem controle especial. Pode imprimir em branco.</p>
 
         <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-5 mb-4">
           <div className="grid grid-cols-2 gap-3 mb-5">
@@ -133,25 +127,6 @@ export default function ReceitaSimples() {
           </div>
         </div>
 
-        {/* Seletor de assinatura */}
-        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-4 mb-4">
-          <div className="flex items-center gap-3">
-            <UserCheck className="w-4 h-4 text-brand-blue-600 flex-shrink-0" />
-            <span className="text-sm font-semibold text-gray-700">Assinatura na impressão:</span>
-            <div className="flex gap-2">
-              {ROLE_OPTIONS.map(o => (
-                <button
-                  key={o.value}
-                  onClick={() => setSignerRole(o.value)}
-                  className={`px-4 py-1.5 rounded-full text-sm font-medium border transition-all ${signerRole === o.value ? "bg-brand-blue-600 border-brand-blue-600 text-white" : "bg-white border-gray-300 text-gray-600 hover:border-brand-blue-400"}`}
-                >
-                  {o.label}
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
-
         <div className="flex gap-3">
           <button onClick={handlePrint} className="flex items-center gap-2 bg-brand-blue-600 hover:bg-brand-blue-700 text-white font-semibold px-5 py-2.5 rounded-lg transition-colors">
             <Printer className="w-4 h-4" /> Imprimir Receita
@@ -167,19 +142,29 @@ export default function ReceitaSimples() {
         <PrintHeader title="Prescrição Médica" />
         {dated && <p className="text-sm text-center -mt-2 mb-4">Data: {isoToBR(date)}</p>}
         <div className="flex justify-between text-sm mb-2">
-          <div><span className="font-semibold">Paciente:</span> {patientName}</div>
+          <div><span className="font-semibold">Paciente:</span> {patientName || "________________________________________"}</div>
           {cid && <div><span className="font-semibold">CID-10:</span> {cid}{cidName ? ` – ${cidName}` : ""}</div>}
         </div>
-        <div className="space-y-3 mb-6">
-          {meds.filter((m) => m.item).map((med, idx) => (
-            <div key={med.id} className="text-sm">
-              <p className="font-semibold">{idx + 1}. {med.item} {med.apresentacao} — {med.via}</p>
-              {med.quantidade && <p className="ml-4">Qtd: {med.quantidade}</p>}
-              {med.posologia && <p className="ml-4">{med.posologia}</p>}
-            </div>
-          ))}
-        </div>
-        <PrintSignatureBlock role={signerRole} date={isoToBR(date)} />
+        {filledMeds.length > 0 ? (
+          <div className="space-y-3 mb-6">
+            {filledMeds.map((med, idx) => (
+              <div key={med.id} className="text-sm">
+                <p className="font-semibold">{idx + 1}. {med.item} {med.apresentacao} — {med.via}</p>
+                {med.quantidade && <p className="ml-4">Qtd: {med.quantidade}</p>}
+                {med.posologia && <p className="ml-4">{med.posologia}</p>}
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="space-y-4 mb-6 mt-4">
+            {[1,2,3,4,5].map(i => (
+              <div key={i} className="text-sm border-b border-gray-200 pb-2">
+                <p>{i}. _______________________________________________</p>
+              </div>
+            ))}
+          </div>
+        )}
+        <PrintSignatureBlock date={isoToBR(date)} />
       </div>
     </div>
   );

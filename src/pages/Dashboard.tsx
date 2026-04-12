@@ -4,10 +4,11 @@ import { todayBR } from "@/lib/utils";
 import {
   FlaskConical, Pill, ScrollText, FileText, ClipboardList, FilePlus2,
   HeartPulse, ChevronRight, Send, CalendarClock, Calculator, Clock,
-  User, Crown, Star, Lock,
+  User, Crown, Star, Lock, StickyNote, Link2, Stethoscope,
 } from "lucide-react";
 
 const tools = [
+  { path: "/anamnese", featureId: "anamnese", icon: Stethoscope, label: "Anamnese", desc: "Modelo completo de anamnese médica", color: "bg-emerald-50 text-emerald-700 border-emerald-100" },
   { path: "/exames", featureId: "exames", icon: FlaskConical, label: "Pedido de Exames", desc: "Rotina, risco cirúrgico e personalizados", color: "bg-brasil-blue/10 text-brasil-blue border-brasil-blue/20" },
   { path: "/receita-simples", featureId: "receita-simples", icon: Pill, label: "Receita Simples", desc: "Medicamentos de uso comum", color: "bg-brasil-green/10 text-brasil-green border-brasil-green/20" },
   { path: "/receita-controlada", featureId: "receita-controlada", icon: ScrollText, label: "Receita Controlada", desc: "Controle especial, duas vias", color: "bg-brasil-yellow/20 text-amber-700 border-brasil-yellow/30" },
@@ -21,8 +22,8 @@ const tools = [
 
 const utilities = [
   { path: "/calculadoras", featureId: "calculadoras", icon: Calculator, label: "Calculadoras Clínicas", desc: "24 ferramentas de apoio clínico", color: "bg-gray-50 text-gray-700 border-gray-200" },
-  { path: "/historico", featureId: "historico", icon: Clock, label: "Histórico", desc: "Documentos gerados neste dispositivo", color: "bg-gray-50 text-gray-700 border-gray-200" },
-  { path: "/perfil", featureId: "perfil", icon: User, label: "Meu Perfil", desc: "Nome, CRM e dados do médico", color: "bg-gray-50 text-gray-700 border-gray-200" },
+  { path: "/notas", featureId: "notas", icon: StickyNote, label: "Bloco de Notas", desc: "Anotações rápidas do plantão", color: "bg-gray-50 text-gray-700 border-gray-200" },
+  { path: "/links", featureId: "links", icon: Link2, label: "Links Úteis", desc: "AGHUX, Laudos, Vivace, QWEN", color: "bg-gray-50 text-gray-700 border-gray-200" },
 ];
 
 const roleDisplay = {
