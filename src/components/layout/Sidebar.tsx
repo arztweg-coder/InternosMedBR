@@ -4,6 +4,7 @@ import {
   LayoutDashboard, FlaskConical, FileText, Pill, ClipboardList,
   FilePlus2, LogOut, ScrollText, HeartPulse, Send, CalendarClock,
   User, Clock, Calculator, Shield, Crown, Star, Hospital,
+  Link2, StickyNote,
 } from "lucide-react";
 import { PrivacyBadge } from "@/components/PrivacyBanner";
 import { clearUser, getInitials, getStoredUser } from "@/lib/auth";
@@ -19,12 +20,12 @@ interface NavItemDef {
 
 const navItems: NavItemDef[] = [
   { path: "/", label: "Dashboard", icon: LayoutDashboard, exact: true },
-  { path: "/anamnese", label: "Anamnese 📋", icon: ClipboardList, featureId: "anamnese" },
-  { path: "/calculadoras", label: "Calculadoras 🧮", icon: Calculator, featureId: "calculadoras" },
   { path: "/aih", label: "AIH", icon: Hospital, featureId: "aih" },
   { path: "/alta", label: "Alta Hospitalar", icon: ClipboardList, featureId: "alta" },
+  { path: "/anamnese", label: "Anamnese 📋", icon: ClipboardList, featureId: "anamnese" },
   { path: "/apac", label: "APAC", icon: HeartPulse, featureId: "apac" },
   { path: "/atestado", label: "Atestado Médico", icon: FileText, featureId: "atestado" },
+  { path: "/calculadoras", label: "Calculadoras 🧮", icon: Calculator, featureId: "calculadoras" },
   { path: "/encaminhamento", label: "Encaminhamento", icon: Send, featureId: "encaminhamento" },
   { path: "/lme", label: "LME", icon: FilePlus2, featureId: "lme" },
   { path: "/exames", label: "Pedido de Exames", icon: FlaskConical, featureId: "exames" },
@@ -35,7 +36,9 @@ const navItems: NavItemDef[] = [
 
 const bottomItems: NavItemDef[] = [
   { path: "/admin", label: "Admin", icon: Shield },
+  { path: "/notas", label: "Bloco de Notas", icon: StickyNote, featureId: "notas" },
   { path: "/historico", label: "Histórico", icon: Clock, featureId: "historico" },
+  { path: "/links", label: "Links Úteis", icon: Link2, featureId: "links" },
   { path: "/perfil", label: "Meu Perfil", icon: User, featureId: "perfil" },
 ];
 
