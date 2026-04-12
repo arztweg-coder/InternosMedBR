@@ -42,6 +42,9 @@ import TermsOfService from "@/pages/TermsOfService";
 // Novos módulos
 import LinksUteis from "@/pages/LinksUteis";
 import BlocoNotas from "@/pages/BlocoNotas";
+import GasometriaPage from "@/pages/GasometriaPage";
+import ManobrasPage from "@/pages/ManobrasPage";
+import ForumPage from "@/pages/ForumPage";
 
 function RequireAuth({ children }: { children: React.ReactNode }) {
   const user = getStoredUser();
@@ -118,6 +121,9 @@ export default function App() {
           {/* Novos módulos */}
           <Route path="links" element={<LinksUteis />} />
           <Route path="notas" element={<BlocoNotas />} />
+          <Route path="forum" element={<ForumPage />} />
+          <Route path="calculadoras/gasometria" element={<GasometriaPage />} />
+          <Route path="calculadoras/manobras" element={<ManobrasPage />} />
         </Route>
 
         <Route path="*" element={<Navigate to="/" replace />} />
