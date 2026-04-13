@@ -9,6 +9,7 @@ const TabagismoInicial  = lazy(() => import('../components/pneumologia/forms/Tab
 const TabagismoRetorno  = lazy(() => import('../components/pneumologia/forms/TabagismoRetorno'));
 
 const especialidades = [
+  { id: 'cir_vascular',  nome: 'Cir. Vascular',           emoji: '🫀',  descricao: 'Anamnese de cirurgia vascular' },
   { id: 'cardiologia',   nome: 'Cardiologia',             emoji: '❤️',  descricao: 'Anamnese cardiovascular' },
   { id: 'dermatologia',  nome: 'Dermatologia',             emoji: '🩹',  descricao: 'Anamnese dermatológica' },
   { id: 'endocrino',     nome: 'Endocrinologia',           emoji: '🩺',  descricao: 'Anamnese endócrina' },
@@ -158,7 +159,7 @@ export default function AnamnesePage() {
         <h1 className="text-2xl font-bold text-gray-800">Anamnese por Especialidade</h1>
       </div>
       <p className="text-sm text-gray-500 mb-5">
-        20 especialidades — selecione para iniciar o roteiro de anamnese.
+        21 especialidades — selecione para iniciar o roteiro de anamnese.
       </p>
 
       <div className="flex flex-col lg:flex-row gap-5">
@@ -230,7 +231,7 @@ export default function AnamnesePage() {
                 Selecione uma especialidade
               </h3>
               <p className="text-sm text-gray-400">
-                Escolha uma das 20 especialidades à esquerda para iniciar o roteiro de anamnese.
+                Escolha uma das 21 especialidades à esquerda para iniciar o roteiro de anamnese.
               </p>
             </div>
           )}
