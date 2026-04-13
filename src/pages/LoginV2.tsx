@@ -135,42 +135,9 @@ export default function LoginV2() {
   return (
     <div className="relative min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-50">
 
-      {/* Box hospitais — canto superior direito */}
-      <div className="absolute top-[38%] -translate-y-1/2 right-6 w-72 hidden lg:block z-10">
-        <div className="bg-white rounded-xl shadow-md border-2 border-teal-100 p-4 text-center">
-          <h3 className="text-sm font-bold text-gray-900 mb-1">
-            🏥 Quer usar o InternosMed em seu Hospital?
-          </h3>
-          <p className="text-xs text-gray-500 mb-3">
-            Implementação personalizada para hospitais universitários e serviços de residência médica.
-          </p>
-          <div className="flex flex-col gap-2">
-            <a
-              href="mailto:contato@arztweg.com?subject=InternosMed - Solicitação de Serviços para Hospital"
-              className="inline-flex items-center justify-center gap-1.5 px-3 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors text-xs font-medium"
-            >
-              <Mail className="w-3.5 h-3.5" />
-              Solicitar Implementação
-            </a>
-            <a
-              href="https://www.arztweg.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-1.5 px-3 py-2 bg-white text-teal-600 border border-teal-500 rounded-lg hover:bg-teal-50 transition-colors text-xs font-medium"
-            >
-              <ExternalLink className="w-3.5 h-3.5" />
-              Conhecer ArztWEG
-            </a>
-          </div>
-          <p className="text-[10px] text-gray-400 mt-3 text-center">
-            ArztWeg Company - O caminho Médico
-          </p>
-        </div>
-      </div>
-
-      {/* Login centralizado */}
-      <div className="flex items-center justify-center min-h-screen p-4">
-      <div className="w-full max-w-md">
+      {/* Layout: login + banner lado a lado, alinhados no topo */}
+      <div className="flex items-start justify-center min-h-screen p-4 gap-8">
+      <div className="w-full max-w-md self-center">
         {/* Logo e Título */}
         <div className="text-center mb-8">
           <div className="inline-block mb-4">
@@ -318,7 +285,41 @@ export default function LoginV2() {
           Desenvolvido em conformidade com LGPD
         </p>
       </div>
-      </div>{/* fim flex centralizado */}
+
+      {/* Box hospitais — alinhado com o topo do card de login */}
+      <div className="w-72 hidden lg:block self-start mt-[calc(50vh-340px)]">
+        <div className="bg-white rounded-xl shadow-md border-2 border-teal-100 p-4 text-center">
+          <h3 className="text-sm font-bold text-gray-900 mb-1">
+            🏥 Quer usar o InternosMed em seu Hospital?
+          </h3>
+          <p className="text-xs text-gray-500 mb-3">
+            Implementação personalizada para hospitais universitários e serviços de residência médica.
+          </p>
+          <div className="flex flex-col gap-2">
+            <a
+              href="mailto:contato@arztweg.com?subject=InternosMed - Solicitação de Serviços para Hospital"
+              className="inline-flex items-center justify-center gap-1.5 px-3 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors text-xs font-medium"
+            >
+              <Mail className="w-3.5 h-3.5" />
+              Solicitar Implementação
+            </a>
+            <a
+              href="https://www.arztweg.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-1.5 px-3 py-2 bg-white text-teal-600 border border-teal-500 rounded-lg hover:bg-teal-50 transition-colors text-xs font-medium"
+            >
+              <ExternalLink className="w-3.5 h-3.5" />
+              Conhecer ArztWEG
+            </a>
+          </div>
+          <p className="text-[10px] text-gray-400 mt-3 text-center">
+            ArztWeg Company - O caminho Médico
+          </p>
+        </div>
+      </div>
+
+      </div>
 
       {/* Modal de Termos de Uso */}
       <TermsModal
