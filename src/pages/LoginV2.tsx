@@ -163,7 +163,7 @@ export default function LoginV2() {
             </a>
           </div>
           <p className="text-[10px] text-gray-400 mt-3 text-center">
-            Dr. Frank Walczak · Projeto ArztWEG
+            ArztWeg Company - O caminho Médico
           </p>
         </div>
       </div>
