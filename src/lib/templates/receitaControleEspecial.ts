@@ -3,7 +3,7 @@
  * Layout: A4 Landscape (Paisagem)
  * Formato: Conforme Portaria SVS/MS nº 344/1998
  * 
- * Baseado no modelo oficial fornecido por Dr. Frank Walczak
+ * Baseado no modelo oficial fornecido por ArztWeg Company - O Caminho Médico
  * Substitui o padrão anterior do sistema InternosMed
  */
 

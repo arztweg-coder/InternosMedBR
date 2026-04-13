@@ -92,6 +92,23 @@
   }
 
   @page { size: A4; margin: 0; }
+
+  /* Receita Controlada — A4 Landscape, 2 vias lado a lado */
+  .print-receita-landscape {
+    width: 297mm;
+    min-height: 210mm;
+    padding: 10mm 15mm;
+    background: white;
+    box-shadow: none !important;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15mm;
+    page-break-after: always;
+    break-after: page;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
 }
 
 @media screen {

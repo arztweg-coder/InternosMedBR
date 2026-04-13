@@ -214,7 +214,7 @@ export default function AnamnesePage() {
                   <div className="mt-5 rounded-lg bg-teal-50 border border-teal-200 p-4 text-left max-w-sm mx-auto">
                     <p className="text-xs font-semibold text-teal-700 mb-2">Próximos passos:</p>
                     <ul className="text-xs text-teal-600 space-y-1">
-                      <li>• Dr. Frank fornecerá o modelo de cada especialidade</li>
+                      <li>• A equipe ArztWeg fornecerá o modelo de cada especialidade</li>
                       <li>• Campos personalizados por especialidade</li>
                       <li>• Validação e salvamento local</li>
                       <li>• Impressão formatada em A4</li>

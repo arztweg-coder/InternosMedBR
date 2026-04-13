@@ -87,7 +87,21 @@ export default function ReceitaControlada() {
   }
 
   function handlePrint() {
+    // Injetar CSS landscape antes de imprimir
+    const style = document.createElement('style');
+    style.id = 'landscape-print-style';
+    style.textContent = '@page { size: A4 landscape; margin: 0; }';
+    document.head.appendChild(style);
+    document.body.classList.add('receita-landscape-mode');
+
     window.print();
+
+    // Restaurar após impressão
+    setTimeout(() => {
+      const el = document.getElementById('landscape-print-style');
+      if (el) el.remove();
+      document.body.classList.remove('receita-landscape-mode');
+    }, 1000);
   }
 
   return (

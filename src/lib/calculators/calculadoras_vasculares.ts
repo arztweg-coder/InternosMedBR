@@ -8,7 +8,7 @@
  * 4. Classificação de Rutherford para Isquemia Aguda
  * 5. Risco de Ruptura de AAA
  * 
- * Dr. Frank Walczak - Cirurgia Vascular HC-UFG
+ * ArztWeg Company - O Caminho Médico - Cirurgia Vascular HC-UFG
  */
 
 import { Calculator, CalculatorResult } from './types';

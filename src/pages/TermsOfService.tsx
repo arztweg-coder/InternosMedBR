@@ -210,7 +210,7 @@ export default function TermsOfService() {
                 <strong>Goiânia/GO</strong>, versão atualizada em <strong>março de 2026</strong>.
               </p>
               <div className="text-center">
-                <p className="font-bold text-gray-900 mb-1">Dr. Frank Walczak</p>
+                <p className="font-bold text-gray-900 mb-1">ArztWeg Company - O Caminho Médico</p>
                 <p className="text-gray-700 mb-1">Sênior Developer - InternosMED BR</p>
                 <p className="text-gray-600 text-sm">OAB 17.990</p>
               </div>

@@ -18,28 +18,29 @@ interface NavItemDef {
   exact?: boolean;
 }
 
+// Todos os itens (exceto Dashboard) em ordem alfabética A→Z
 const navItems: NavItemDef[] = [
-  { path: "/aih", label: "AIH", icon: Hospital, featureId: "aih" },
-  { path: "/alta", label: "Alta Hospitalar", icon: ClipboardList, featureId: "alta" },
-  { path: "/anamnese", label: "Anamnese 📋", icon: ClipboardList, featureId: "anamnese" },
-  { path: "/apac", label: "APAC", icon: HeartPulse, featureId: "apac" },
-  { path: "/atestado", label: "Atestado Médico", icon: FileText, featureId: "atestado" },
-  { path: "/calculadoras", label: "Calculadoras 🧮", icon: Calculator, featureId: "calculadoras" },
-  { path: "/encaminhamento", label: "Encaminhamento", icon: Send, featureId: "encaminhamento" },
-  { path: "/lme", label: "LME", icon: FilePlus2, featureId: "lme" },
-  { path: "/exames", label: "Pedido de Exames", icon: FlaskConical, featureId: "exames" },
-  { path: "/receita-controlada", label: "Receita Controlada", icon: ScrollText, featureId: "receita-controlada" },
-  { path: "/receita-simples", label: "Receita Simples", icon: Pill, featureId: "receita-simples" },
-  { path: "/retorno", label: "Retorno / SAMIS", icon: CalendarClock, featureId: "retorno" },
+  { path: "/admin",              label: "Admin",              icon: Shield,       featureId: "admin" },
+  { path: "/aih",                label: "AIH",                icon: Hospital,     featureId: "aih" },
+  { path: "/alta",               label: "Alta Hospitalar",    icon: ClipboardList,featureId: "alta" },
+  { path: "/anamnese",           label: "Anamnese",           icon: ClipboardList,featureId: "anamnese" },
+  { path: "/apac",               label: "APAC",               icon: HeartPulse,   featureId: "apac" },
+  { path: "/atestado",           label: "Atestado Médico",    icon: FileText,     featureId: "atestado" },
+  { path: "/notas",              label: "Bloco de Notas",     icon: StickyNote,   featureId: "notas" },
+  { path: "/calculadoras",       label: "Calculadoras",       icon: Calculator,   featureId: "calculadoras" },
+  { path: "/encaminhamento",     label: "Encaminhamento",     icon: Send,         featureId: "encaminhamento" },
+  { path: "/forum",              label: "Fórum",              icon: User,         featureId: "forum" },
+  { path: "/historico",          label: "Histórico",          icon: Clock,        featureId: "historico" },
+  { path: "/links",              label: "Links Úteis",        icon: Link2,        featureId: "links" },
+  { path: "/lme",                label: "LME",                icon: FilePlus2,    featureId: "lme" },
+  { path: "/perfil",             label: "Meu Perfil",         icon: User,         featureId: "perfil" },
+  { path: "/exames",             label: "Pedido de Exames",   icon: FlaskConical, featureId: "exames" },
+  { path: "/receita-controlada", label: "Receita Controlada", icon: ScrollText,   featureId: "receita-controlada" },
+  { path: "/receita-simples",    label: "Receita Simples",    icon: Pill,         featureId: "receita-simples" },
+  { path: "/retorno",            label: "Retorno / SAMIS",    icon: CalendarClock,featureId: "retorno" },
 ];
 
-const bottomItems: NavItemDef[] = [
-  { path: "/admin", label: "Admin", icon: Shield },
-  { path: "/notas", label: "Bloco de Notas", icon: StickyNote, featureId: "notas" },
-  { path: "/historico", label: "Histórico", icon: Clock, featureId: "historico" },
-  { path: "/links", label: "Links Úteis", icon: Link2, featureId: "links" },
-  { path: "/perfil", label: "Meu Perfil", icon: User, featureId: "perfil" },
-];
+const bottomItems: NavItemDef[] = [];
 
 interface SidebarProps {
   collapsed: boolean;
@@ -163,15 +164,9 @@ export default function Sidebar({ collapsed }: SidebarProps) {
         </button>
       </div>
 
-      {/* Nav principal */}
+      {/* Nav principal — ordem alfabética */}
       <nav className="flex-1 py-2 overflow-y-auto scrollbar-thin">
-        {!collapsed && <p className="px-4 py-1.5 text-blue-300/50 text-xs font-semibold uppercase tracking-wider">Documentos</p>}
         {navItems.map((item) => (
-          <NavItem key={item.path} {...item} />
-        ))}
-
-        {!collapsed && <p className="px-4 py-1.5 mt-2 text-blue-300/50 text-xs font-semibold uppercase tracking-wider">Ferramentas</p>}
-        {bottomItems.map((item) => (
           <NavItem key={item.path} {...item} />
         ))}
       </nav>
