@@ -2141,7 +2141,7 @@ export default function Calculadoras() {
 
       {/* Cards de links para páginas dedicadas */}
       <div className="mb-6">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
           {/* Exame Físico */}
           <button
             onClick={() => navigate('/calculadoras/exame-fisico')}
@@ -2170,6 +2170,23 @@ export default function Calculadoras() {
             <div className="flex-1 min-w-0">
               <p className="font-semibold text-gray-800 text-sm">🫁 Gasometria</p>
               <p className="text-xs text-gray-500">Interpretação completa</p>
+            </div>
+            <ChevronRight className="w-4 h-4 text-gray-300 group-hover:text-gray-500 transition-colors flex-shrink-0" />
+          </button>
+
+          {/* POCUS */}
+          <button
+            onClick={() => navigate('/calculadoras/pocus')}
+            className="flex items-center gap-3 bg-white border rounded-xl p-3.5 text-left transition-all group shadow-sm hover:shadow-md cursor-pointer bg-violet-50 text-violet-700 border-violet-200"
+          >
+            <div className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 bg-violet-50 text-violet-700 border-violet-200">
+              <svg className="w-5 h-5 text-violet-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+              </svg>
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="font-semibold text-gray-800 text-sm">🔊 POCUS</p>
+              <p className="text-xs text-gray-500">eFAST · BLUE · RUSH</p>
             </div>
             <ChevronRight className="w-4 h-4 text-gray-300 group-hover:text-gray-500 transition-colors flex-shrink-0" />
           </button>
