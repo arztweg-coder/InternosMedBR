@@ -135,8 +135,8 @@ export default function LoginV2() {
   return (
     <div className="relative min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-50">
 
-      {/* Layout: login + banner lado a lado, centralizados */}
-      <div className="flex items-center justify-center min-h-screen p-4 gap-8">
+      {/* Layout: login + banner lado a lado */}
+      <div className="flex justify-center min-h-screen p-4 pt-12 gap-8">
       <div className="w-full max-w-md">
         {/* Logo e Título */}
         <div className="text-center mb-8">
@@ -287,9 +287,7 @@ export default function LoginV2() {
       </div>
 
       {/* Box hospitais — alinhado com o card de login */}
-      <div className="w-72 hidden lg:flex lg:flex-col self-center">
-        {/* Espaçador = altura aproximada da seção do logo (logo + título + subtítulo + mb-8) */}
-        <div className="h-[228px] flex-shrink-0" />
+      <div className="w-72 hidden lg:block mt-[228px]">
         <div className="bg-white rounded-xl shadow-md border-2 border-teal-100 p-4 text-center">
           <h3 className="text-sm font-bold text-gray-900 mb-1">
             🏥 Quer usar o InternosMed em seu Hospital?
