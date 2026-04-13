@@ -1,5 +1,6 @@
 import { useState, lazy, Suspense } from 'react';
 import { ChevronDown, ClipboardList, ArrowLeft, Loader2 } from 'lucide-react';
+import CirVascularAnamnese from './CirVascularAnamnese';
 
 // Lazy load dos formulários de pneumologia
 const AsmaFirstVisit    = lazy(() => import('../components/pneumologia/forms/AsmaFirstVisit'));
@@ -200,9 +201,11 @@ export default function AnamnesePage() {
                 </div>
               </div>
 
-              {/* Pneumologia — formulários ativos */}
+              {/* Especialidades com formulários ativos */}
               {selected.id === 'pneumologia' ? (
                 <PneumologiaAnamnese />
+              ) : selected.id === 'cir_vascular' ? (
+                <CirVascularAnamnese />
               ) : (
                 <div className="rounded-xl bg-gray-50 border border-gray-200 p-8 text-center">
                   <ClipboardList className="w-14 h-14 text-gray-300 mx-auto mb-3" />

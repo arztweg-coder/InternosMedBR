@@ -107,8 +107,20 @@ export default function ReceitaControlada() {
   return (
     <div className="animate-fade-in">
       <div className="no-print">
-        <h1 className="text-2xl font-bold text-gray-800 mb-1">Receituário de Controle Especial</h1>
-        <p className="text-sm text-gray-500 mb-6">Impresso em duas vias para medicamentos controlados. Pode imprimir em branco.</p>
+        <div className="flex items-start justify-between mb-1 gap-4">
+          <div>
+            <h1 className="text-2xl font-bold text-gray-800">Receituário de Controle Especial</h1>
+            <p className="text-sm text-gray-500 mt-1">Impresso em duas vias para medicamentos controlados. Pode imprimir em branco.</p>
+          </div>
+          <a
+            href="/templates/RECEITUARIO_ESPECIAL.docx"
+            download="RECEITUARIO_ESPECIAL.docx"
+            className="flex-shrink-0 flex items-center gap-2 px-4 py-2 bg-blue-50 border border-blue-200 text-blue-700 rounded-lg text-sm font-medium hover:bg-blue-100 transition-colors"
+          >
+            <span>⬇</span> Modelo ANVISA (.docx)
+          </a>
+        </div>
+        <div className="h-px bg-gray-100 mb-5" />
 
         <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-5 mb-4">
           <div className="grid grid-cols-2 gap-3 mb-5">

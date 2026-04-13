@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Save, CheckCircle } from 'lucide-react';
+import BotaoImprimir from '../BotaoImprimir';
 import { v4 as uuidv4 } from 'uuid';
 import MedicamentoSUSAutocomplete, { MedicamentoItem } from '../MedicamentoSUSAutocomplete';
 import ACTInline, { ACTData } from '../ACTInline';
@@ -340,6 +341,7 @@ export default function AsmaFirstVisit() {
         {saved ? <CheckCircle className="w-4 h-4" /> : <Save className="w-4 h-4" />}
         {saved ? 'Salvo com sucesso!' : 'Salvar formulário'}
       </button>
+      <BotaoImprimir />
     </div>
   );
 }
