@@ -18,6 +18,7 @@ import {
   AUTHORIZED_DOMAINS,
   type UserProfile,
 } from "@/lib/auth-v2";
+import { storeUser } from "@/lib/auth";
 import TermsModal from "@/components/TermsModal";
 
 export default function LoginV2() {
@@ -59,17 +60,37 @@ export default function LoginV2() {
 
     // Simulação de autenticação (substituir por Supabase Auth)
     setTimeout(() => {
+      const emailNorm = email.toLowerCase().trim();
+
+      // Restaurar perfil persistente salvo pelo auth.ts
+      const profileKey = `internosmed_profile_${emailNorm}`;
+      let existing: Record<string, unknown> = {};
+      try {
+        const raw = localStorage.getItem(profileKey);
+        if (raw) existing = JSON.parse(raw);
+      } catch (_) { /* ignora */ }
+
       const user: UserProfile = {
-        id: generateUserId(),
-        email: email.toLowerCase().trim(),
+        id: (existing.id as string) || generateUserId(),
+        email: emailNorm,
         domain,
-        name: email.split("@")[0], // Placeholder - pegar do perfil real
+        name: (existing.name as string) || emailNorm.split("@")[0],
         role: getDefaultRoleByDomain(domain),
-        institution: getDefaultInstitution(domain),
-        createdAt: new Date().toISOString(),
+        institution: (existing.institution as string) || getDefaultInstitution(domain),
+        createdAt: (existing.createdAt as string) || new Date().toISOString(),
         lastLogin: new Date().toISOString(),
         mfaEnabled: false,
+        // Restaurar campos do perfil (presentes em UserProfile)
+        ...(existing.crm        !== undefined && { crm:       existing.crm as string }),
+        ...(existing.rqe        !== undefined && { rqe:       existing.rqe as string }),
+        ...(existing.specialty  !== undefined && { specialty: existing.specialty as string }),
+        ...(existing.turma      !== undefined && { turma:     existing.turma as string }),
       };
+
+      // Persistir perfil completo via auth.ts (preserva cargo, phone, matricula etc.)
+      if (Object.keys(existing).length > 0) {
+        storeUser({ ...existing, ...user } as Parameters<typeof storeUser>[0]);
+      }
 
       // Verificar se já aceitou os termos (localStorage como fallback até Firebase)
       const termsKey = `terms_accepted_${user.email}`;
